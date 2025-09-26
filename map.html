@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map Lokasi Penting Sukabumi</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+    <h1> Map Lokasi Penting di Sukabumi </h1>
+    <div id="map" style="height: 500px;"></div> 
+
+    <script>
+        // Inisialisasi map di pusat Sukabumi
+        var map = L.map('map').setView([-6.9181652, 106.93152], 12);
+
+        // Tambah layer OSM
+        var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+        // Tambah data GeoJSON dari file
+        fetch("map.geojson")
+        .then(res => res.json())
+        .then(data => L.geoJSON(data, {
+            onEachFeature: function(feature, layer) {
+                if (feature.properties && feature.properties.nama) {
+                    layer.bindPopup(feature.properties.nama);
+                }
+            }
+        }).addTo(map));
+
+        // ===== Point (Marker manual) =====
+        L.marker([-6.9181652, 106.93152]).addTo(map)
+          .bindPopup("Titik Pusat Sukabumi (Point)");
+
+        // ===== Line (Polyline) =====
+        var lineCoords = [
+          [-6.92, 106.92],
+          [-6.923, 106.93],
+          [-6.926, 106.94]
+        ];
+        L.polyline(lineCoords, {color: 'red'}).addTo(map)
+          .bindPopup("Contoh Garis (Line)");
+
+        // ===== Polygon =====
+        var polygonCoords = [
+          [-6.917, 106.928],
+          [-6.919, 106.935],
+          [-6.922, 106.93]
+        ];
+        L.polygon(polygonCoords, {color: 'blue', fillOpacity: 0.3}).addTo(map)
+          .bindPopup("Contoh Polygon (Area)");
+    </script>
+</body>
+</html>

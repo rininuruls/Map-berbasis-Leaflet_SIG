@@ -1,0 +1,46 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "nama": "Titik Pusat Sukabumi (Point)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [106.93152, -6.9181652]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "nama": "Contoh Garis (Line)"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [106.92, -6.92],
+          [106.93, -6.923],
+          [106.94, -6.926]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "nama": "Contoh Polygon (Area)"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [106.928, -6.917],
+            [106.935, -6.919],
+            [106.93, -6.922],
+            [106.928, -6.917]
+          ]
+        ]
+      }
+    }
+  ]
+}
